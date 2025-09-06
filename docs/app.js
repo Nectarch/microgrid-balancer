@@ -13,7 +13,6 @@ function drawNetwork(data){
   const host = document.getElementById('plot-network');
   host.textContent = ''; // clear "Placeholder"
 
-  // SVG setup
   const W = 420, H = 300;
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
@@ -21,11 +20,10 @@ function drawNetwork(data){
   svg.setAttribute('width', '100%');
   svg.setAttribute('height', '100%');
 
-  // helpers to get bus by id
   const byId = {};
   data.buses.forEach(b => byId[b.id] = b);
 
-  // draw lines first
+  // lines
   data.lines.forEach(line => {
     const a = byId[line.from], b = byId[line.to];
     const el = document.createElementNS(svgNS, 'line');
@@ -37,9 +35,8 @@ function drawNetwork(data){
     svg.appendChild(el);
   });
 
-  // draw buses (nodes)
+  // buses
   data.buses.forEach(bus => {
-    // node
     const c = document.createElementNS(svgNS, 'circle');
     c.setAttribute('cx', bus.x); c.setAttribute('cy', bus.y);
     c.setAttribute('r', bus.type === 'slack' ? 8 : 6);
@@ -47,7 +44,6 @@ function drawNetwork(data){
     c.setAttribute('stroke', '#0b0c10'); c.setAttribute('stroke-width', '2');
     svg.appendChild(c);
 
-    // label
     const t = document.createElementNS(svgNS, 'text');
     t.setAttribute('x', bus.x + 10); t.setAttribute('y', bus.y - 10);
     t.setAttribute('fill', '#9aa0a6');
@@ -59,11 +55,10 @@ function drawNetwork(data){
   host.appendChild(svg);
 }
 
-// Load local data, then draw network
+// Load data and draw
 fetch('./grid.json')
   .then(r => r.json())
   .then(data => {
-    console.log('grid.json loaded:', data);
     document.getElementById('score').textContent = '— ready —';
     drawNetwork(data);
   })
