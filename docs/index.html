@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Microgrid Balancer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Microgrid Balancer</h1>
+      <div class="score">
+        <div class="score-label">Resilience Score</div>
+        <div class="score-value" id="score">—</div>
+      </div>
+    </header>
+
+    <div class="app">
+      <aside class="sidebar">
+        <h2>Controls</h2>
+
+        <label>Solar %: <span id="solarVal">50</span>%</label>
+        <input id="solar" type="range" min="0" max="100" value="50" step="5">
+
+        <label>Battery (kWh): <span id="batVal">100</span></label>
+        <input id="battery" type="range" min="0" max="500" value="100" step="25">
+
+        <details>
+          <summary>Model (brief)</summary>
+          <p>DC load flow on a tiny test grid with hourly (24) steps, solar, and a simple battery heuristic.</p>
+        </details>
+      </aside>
+
+      <main class="content">
+        <section class="card" id="metrics">
+          <h3>Metrics</h3>
+          <div class="grid-3">
+            <div><strong>Unserved energy</strong><br><span id="ue">—</span> kWh</div>
+            <div><strong>Max line loading</strong><br><span id="mll">—</span>%</div>
+            <div><strong>Hours overloaded</strong><br><span id="hrs">—</span>/24</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Worst-line loading over time</h3>
+          <div class="plot" id="plot-loading">Placeholder</div>
+        </section>
+
+        <section class="card">
+          <h3>Net load, solar, battery power</h3>
+          <div class="plot" id="plot-power">Placeholder</div>
+        </section>
+
+        <section class="card">
+          <h3>Network view</h3>
+          <div class="plot" id="plot-network">Placeholder</div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="https://github.com/Nectarch/microgrid-balancer">GitHub repo</a>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
