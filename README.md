@@ -3,7 +3,7 @@
 Interactive microgrid simulator (solar + battery, DC load flow).  
 Runs locally and on GitHub Pages (client-only).
 
-**Live site:** https://Nectarch.github.io/microgrid-balancer/  
+**Live site:** https://nectarch.github.io/microgrid-balancer/  
 **Repo:** https://github.com/Nectarch/microgrid-balancer
 
 ## Run locally
